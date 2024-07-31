@@ -12,7 +12,7 @@
 		710A6F892C57CBFD00E41A1F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 710A6F882C57CBFD00E41A1F /* ViewController.swift */; };
 		710A6F8E2C57CBFE00E41A1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 710A6F8D2C57CBFE00E41A1F /* Assets.xcassets */; };
 		710A6F912C57CBFE00E41A1F /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 710A6F902C57CBFE00E41A1F /* Base */; };
-		717B3F2D2C57CDBC005742F8 /* FruitSotre.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717B3F2C2C57CDBC005742F8 /* FruitSotre.swift */; };
+		717B3F2D2C57CDBC005742F8 /* FruitStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717B3F2C2C57CDBC005742F8 /* FruitStore.swift */; };
 		717B3F2F2C57CDC3005742F8 /* JuiceMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 717B3F2E2C57CDC3005742F8 /* JuiceMaker.swift */; };
 /* End PBXBuildFile section */
 
@@ -24,7 +24,7 @@
 		710A6F8D2C57CBFE00E41A1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		710A6F902C57CBFE00E41A1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		710A6F922C57CBFE00E41A1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		717B3F2C2C57CDBC005742F8 /* FruitSotre.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitSotre.swift; sourceTree = "<group>"; };
+		717B3F2C2C57CDBC005742F8 /* FruitStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FruitStore.swift; sourceTree = "<group>"; };
 		717B3F2E2C57CDC3005742F8 /* JuiceMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JuiceMaker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -61,7 +61,7 @@
 				710A6F842C57CBFD00E41A1F /* AppDelegate.swift */,
 				710A6F862C57CBFD00E41A1F /* SceneDelegate.swift */,
 				710A6F882C57CBFD00E41A1F /* ViewController.swift */,
-				717B3F2C2C57CDBC005742F8 /* FruitSotre.swift */,
+				717B3F2C2C57CDBC005742F8 /* FruitStore.swift */,
 				717B3F2E2C57CDC3005742F8 /* JuiceMaker.swift */,
 				710A6F8D2C57CBFE00E41A1F /* Assets.xcassets */,
 				710A6F8F2C57CBFE00E41A1F /* LaunchScreen.storyboard */,
@@ -143,7 +143,7 @@
 				710A6F892C57CBFD00E41A1F /* ViewController.swift in Sources */,
 				710A6F852C57CBFD00E41A1F /* AppDelegate.swift in Sources */,
 				717B3F2F2C57CDC3005742F8 /* JuiceMaker.swift in Sources */,
-				717B3F2D2C57CDBC005742F8 /* FruitSotre.swift in Sources */,
+				717B3F2D2C57CDBC005742F8 /* FruitStore.swift in Sources */,
 				710A6F872C57CBFD00E41A1F /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
