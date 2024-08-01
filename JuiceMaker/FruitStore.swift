@@ -1,11 +1,25 @@
 class FruitStore {
-    private var strawberry = 10
-    private var banana = 10
-    private var pineapple = 10
-    private var kiwi = 10
-    private var mango = 10
+    private var fruits: (strawberry: Int, banana: Int, pineapple: Int, kiwi: Int, mango: Int) = (10, 10, 10, 10, 10)
     
-    private func useFruit() {
-        
+    func useFruit(for juice: Juice) {
+        switch juice {
+        case .strawberryJuice:
+            fruits.strawberry -= 16
+        case .bananaJuice:
+            fruits.banana -= 2
+        case .kiwiJuice:
+            fruits.kiwi -= 3
+        case .pineappleJuice:
+            fruits.pineapple -= 2
+        case .mangoJuice:
+            fruits.mango -= 3
+        case .strawberryBananaJuice:
+            fruits.strawberry -= 10
+            fruits.banana -= 1
+        case .mangoKiwiJuice:
+            fruits.mango -= 2
+            fruits.kiwi -= 1
+        }
     }
+    
 }
