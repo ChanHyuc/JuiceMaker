@@ -1,6 +1,6 @@
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
     
     private let titleLabel = {
         let label = UILabel()
@@ -11,6 +11,20 @@ class ViewController: UIViewController {
         label.text = "맛있는 쥬스를 만들어 드려요!"
         return label
     }()
+    
+    private let modifyOfStockButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("재고 수정", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 26)
+        button.addTarget(self, action: #selector(didTapmodifyOfStockButton), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc private func didTapmodifyOfStockButton() {
+        
+        navigationController?.pushViewController(ModifyOfStockViewController(), animated: true)
+    }
     
     private let strawberryEmoji = {
         let label = UILabel()
@@ -63,12 +77,15 @@ class ViewController: UIViewController {
     
     private func configureUI() {
         view.addSubview(titleLabel)
+        view.addSubview(modifyOfStockButton)
         view.addSubview(emojiStackView)
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.topAnchor),
             titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
             titleLabel.heightAnchor.constraint(equalToConstant: 80),
+            modifyOfStockButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            modifyOfStockButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
             emojiStackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
             emojiStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
         ])
