@@ -1,5 +1,25 @@
 class FruitStore {
-    private var fruits: (strawberry: Int, banana: Int, pineapple: Int, kiwi: Int, mango: Int) = (10, 10, 10, 10, 10)
+    private var fruits: (strawberry: Int, banana: Int, pineapple: Int, kiwi: Int, mango: Int) = (10, 11, 12, 13, 14)
+    
+    func printStrawberry() -> String {
+        return String(fruits.strawberry)
+    }
+    
+    func printBanana() -> String {
+        return String(fruits.banana)
+    }
+    
+    func printPineapple() -> String {
+        return String(fruits.pineapple)
+    }
+    
+    func printKiwi() -> String {
+        return String(fruits.kiwi)
+    }
+    
+    func printMango() -> String {
+        return String(fruits.mango)
+    }
     
     func useFruit(for juice: Juice) {
         switch juice {
