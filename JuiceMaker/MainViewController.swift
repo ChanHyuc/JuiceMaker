@@ -16,7 +16,8 @@ class MainViewController: UIViewController {
     private let modifyOfStockButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("재고 수정", for: .normal)
+        button.setTitle("재고\n수정", for: .normal)
+        button.titleLabel?.numberOfLines = 2
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 26)
         button.addTarget(self, action: #selector(didTapmodifyOfStockButton), for: .touchUpInside)
         return button
@@ -62,7 +63,7 @@ class MainViewController: UIViewController {
     }()
     
     private lazy var emojiStackView = {
-        let stackView = UIStackView(arrangedSubviews: [strawberryEmoji, bananaEmoji, kiwiEmoji, pineappleEmoji, mangoEmoji])
+        let stackView = UIStackView(arrangedSubviews: [strawberryEmoji, bananaEmoji, pineappleEmoji, kiwiEmoji, mangoEmoji])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.spacing = 100
@@ -73,6 +74,7 @@ class MainViewController: UIViewController {
         let label = UILabel()
         label.backgroundColor = .systemGray6
         label.text = fruitStore.printStrawberry()
+        label.textAlignment = .center
         return label
     }()
     
@@ -80,13 +82,7 @@ class MainViewController: UIViewController {
         let label = UILabel()
         label.backgroundColor = .systemGray6
         label.text = fruitStore.printBanana()
-        return label
-    }()
-    
-    private lazy var kiwiStockLabel = {
-        let label = UILabel()
-        label.backgroundColor = .systemGray6
-        label.text = fruitStore.printKiwi()
+        label.textAlignment = .center
         return label
     }()
     
@@ -94,6 +90,15 @@ class MainViewController: UIViewController {
         let label = UILabel()
         label.backgroundColor = .systemGray6
         label.text = fruitStore.printPineapple()
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private lazy var kiwiStockLabel = {
+        let label = UILabel()
+        label.backgroundColor = .systemGray6
+        label.text = fruitStore.printKiwi()
+        label.textAlignment = .center
         return label
     }()
     
@@ -101,14 +106,17 @@ class MainViewController: UIViewController {
         let label = UILabel()
         label.backgroundColor = .systemGray6
         label.text = fruitStore.printMango()
+        label.textAlignment = .center
         return label
     }()
     
     private lazy var stockLabelStackView = {
-        let stackView = UIStackView(arrangedSubviews: [strawberryStockLabel,bananaStockLabel,kiwiStockLabel,pineappleStockLabel,mangoStockLabel])
+        let stackView = UIStackView(arrangedSubviews: [strawberryStockLabel, bananaStockLabel, pineappleStockLabel, kiwiStockLabel, mangoStockLabel])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.spacing = 100
+        stackView.spacing = 10
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
         return stackView
     }()
     
@@ -129,14 +137,16 @@ class MainViewController: UIViewController {
             titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
             titleLabel.heightAnchor.constraint(equalToConstant: 80),
             
-            modifyOfStockButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            modifyOfStockButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
             modifyOfStockButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -30),
             
             emojiStackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
             emojiStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             
             stockLabelStackView.topAnchor.constraint(equalTo: emojiStackView.bottomAnchor, constant: 20),
-            stockLabelStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            stockLabelStackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            stockLabelStackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
+            stockLabelStackView.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
 
