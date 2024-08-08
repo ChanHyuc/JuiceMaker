@@ -30,6 +30,7 @@ class MainViewController: UIViewController {
     private let strawberryEmoji = {
         let label = UILabel()
         label.text = "🍓"
+        label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 50)
         return label
     }()
@@ -37,6 +38,7 @@ class MainViewController: UIViewController {
     private let bananaEmoji = {
         let label = UILabel()
         label.text = "🍌"
+        label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 50)
         return label
     }()
@@ -44,6 +46,7 @@ class MainViewController: UIViewController {
     private let kiwiEmoji = {
         let label = UILabel()
         label.text = "🥝"
+        label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 50)
         return label
     }()
@@ -51,6 +54,7 @@ class MainViewController: UIViewController {
     private let pineappleEmoji = {
         let label = UILabel()
         label.text = "🍍"
+        label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 50)
         return label
     }()
@@ -58,6 +62,7 @@ class MainViewController: UIViewController {
     private let mangoEmoji = {
         let label = UILabel()
         label.text = "🥭"
+        label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 50)
         return label
     }()
@@ -66,7 +71,8 @@ class MainViewController: UIViewController {
         let stackView = UIStackView(arrangedSubviews: [strawberryEmoji, bananaEmoji, pineappleEmoji, kiwiEmoji, mangoEmoji])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.spacing = 100
+        stackView.alignment = .fill
+        stackView.distribution = .fillEqually
         return stackView
     }()
     
@@ -142,6 +148,7 @@ class MainViewController: UIViewController {
             
             emojiStackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
             emojiStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            emojiStackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
             
             stockLabelStackView.topAnchor.constraint(equalTo: emojiStackView.bottomAnchor, constant: 20),
             stockLabelStackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
