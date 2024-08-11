@@ -27,45 +27,20 @@ class MainViewController: UIViewController {
         navigationController?.pushViewController(ModifyOfStockViewController(), animated: true)
     }
     
-    private let strawberryEmoji = {
-        let label = UILabel()
-        label.text = "🍓"
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 50)
-        return label
-    }()
+    private let strawberryEmoji = createFruitEmoji("🍓")
+    private let bananaEmoji = createFruitEmoji("🍌")
+    private let kiwiEmoji = createFruitEmoji("🥝")
+    private let pineappleEmoji = createFruitEmoji("🍍")
+    private let mangoEmoji = createFruitEmoji("🥭")
     
-    private let bananaEmoji = {
-        let label = UILabel()
-        label.text = "🍌"
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 50)
-        return label
-    }()
     
-    private let kiwiEmoji = {
+    private static func createFruitEmoji(_ emoji: String) -> UILabel {
         let label = UILabel()
-        label.text = "🥝"
+        label.text = emoji
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 50)
         return label
-    }()
-    
-    private let pineappleEmoji = {
-        let label = UILabel()
-        label.text = "🍍"
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 50)
-        return label
-    }()
-    
-    private let mangoEmoji = {
-        let label = UILabel()
-        label.text = "🥭"
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 50)
-        return label
-    }()
+    }
     
     private lazy var emojiStackView = {
         let stackView = UIStackView(arrangedSubviews: [strawberryEmoji, bananaEmoji, pineappleEmoji, kiwiEmoji, mangoEmoji])
