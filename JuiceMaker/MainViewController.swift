@@ -1,7 +1,7 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    private let fruitStore = FruitStore()
+    private static let fruitStore = FruitStore()
     
     private let titleLabel = {
         let label = UILabel()
@@ -33,7 +33,6 @@ class MainViewController: UIViewController {
     private let pineappleEmoji = createFruitEmoji("🍍")
     private let mangoEmoji = createFruitEmoji("🥭")
     
-    
     private static func createFruitEmoji(_ emoji: String) -> UILabel {
         let label = UILabel()
         label.text = emoji
@@ -51,45 +50,19 @@ class MainViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var strawberryStockLabel = {
-        let label = UILabel()
-        label.backgroundColor = .systemGray6
-        label.text = fruitStore.printStrawberry()
-        label.textAlignment = .center
-        return label
-    }()
+    private let strawberryStockLabel = createStockLabel(stock: fruitStore.printStrawberry())
+    private let bananaStockLabel = createStockLabel(stock: fruitStore.printBanana())
+    private let pineappleStockLabel = createStockLabel(stock: fruitStore.printPineapple())
+    private let kiwiStockLabel = createStockLabel(stock: fruitStore.printKiwi())
+    private let mangoStockLabel = createStockLabel(stock: fruitStore.printMango())
     
-    private lazy var bananaStockLabel = {
+    private static func createStockLabel(stock: String) -> UILabel {
         let label = UILabel()
         label.backgroundColor = .systemGray6
-        label.text = fruitStore.printBanana()
+        label.text = stock
         label.textAlignment = .center
         return label
-    }()
-    
-    private lazy var pineappleStockLabel = {
-        let label = UILabel()
-        label.backgroundColor = .systemGray6
-        label.text = fruitStore.printPineapple()
-        label.textAlignment = .center
-        return label
-    }()
-    
-    private lazy var kiwiStockLabel = {
-        let label = UILabel()
-        label.backgroundColor = .systemGray6
-        label.text = fruitStore.printKiwi()
-        label.textAlignment = .center
-        return label
-    }()
-    
-    private lazy var mangoStockLabel = {
-        let label = UILabel()
-        label.backgroundColor = .systemGray6
-        label.text = fruitStore.printMango()
-        label.textAlignment = .center
-        return label
-    }()
+    }
     
     private lazy var stockLabelStackView = {
         let stackView = UIStackView(arrangedSubviews: [strawberryStockLabel, bananaStockLabel, pineappleStockLabel, kiwiStockLabel, mangoStockLabel])
