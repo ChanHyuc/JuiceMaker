@@ -2,7 +2,7 @@ import UIKit
 
 class ModifyOfStockViewController: UIViewController {
     
-    private let fruitStore = FruitStore()
+    private static let fruitStore = FruitStore()
     
     private let titleLabel = {
         let label = UILabel()
@@ -14,45 +14,19 @@ class ModifyOfStockViewController: UIViewController {
         return label
     }()
     
-    private let strawberryEmoji = {
-        let label = UILabel()
-        label.text = "🍓"
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 50)
-        return label
-    }()
+    private let strawberryEmoji = createFruitEmoji("🍓")
+    private let bananaEmoji = createFruitEmoji("🍌")
+    private let kiwiEmoji = createFruitEmoji("🥝")
+    private let pineappleEmoji = createFruitEmoji("🍍")
+    private let mangoEmoji = createFruitEmoji("🥭")
     
-    private let bananaEmoji = {
+    private static func createFruitEmoji(_ emoji: String) -> UILabel {
         let label = UILabel()
-        label.text = "🍌"
+        label.text = emoji
         label.textAlignment = .center
         label.font = UIFont.systemFont(ofSize: 50)
         return label
-    }()
-    
-    private let kiwiEmoji = {
-        let label = UILabel()
-        label.text = "🥝"
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 50)
-        return label
-    }()
-    
-    private let pineappleEmoji = {
-        let label = UILabel()
-        label.text = "🍍"
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 50)
-        return label
-    }()
-    
-    private let mangoEmoji = {
-        let label = UILabel()
-        label.text = "🥭"
-        label.textAlignment = .center
-        label.font = UIFont.systemFont(ofSize: 50)
-        return label
-    }()
+    }
     
     private lazy var emojiStackView = {
         let stackView = UIStackView(arrangedSubviews: [strawberryEmoji, bananaEmoji, pineappleEmoji, kiwiEmoji, mangoEmoji])
@@ -63,46 +37,19 @@ class ModifyOfStockViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var strawberryStockLabel = {
+    private let strawberryStockLabel = createStockLabel(stock: fruitStore.printStrawberry())
+    private let bananaStockLabel = createStockLabel(stock: fruitStore.printBanana())
+    private let pineappleStockLabel = createStockLabel(stock: fruitStore.printPineapple())
+    private let kiwiStockLabel = createStockLabel(stock: fruitStore.printKiwi())
+    private let mangoStockLabel = createStockLabel(stock: fruitStore.printMango())
+    
+    private static func createStockLabel(stock: String) -> UILabel {
         let label = UILabel()
         label.backgroundColor = .systemGray6
-        label.text = fruitStore.printStrawberry()
+        label.text = stock
         label.textAlignment = .center
         return label
-    }()
-    
-    private lazy var bananaStockLabel = {
-        let label = UILabel()
-        label.backgroundColor = .systemGray6
-        label.text = fruitStore.printBanana()
-        label.textAlignment = .center
-        return label
-    }()
-    
-    private lazy var pineappleStockLabel = {
-        let label = UILabel()
-        label.backgroundColor = .systemGray6
-        label.text = fruitStore.printPineapple()
-        label.textAlignment = .center
-        return label
-    }()
-    
-    private lazy var kiwiStockLabel = {
-        let label = UILabel()
-        label.backgroundColor = .systemGray6
-        label.text = fruitStore.printKiwi()
-        label.textAlignment = .center
-        return label
-    }()
-    
-    private lazy var mangoStockLabel = {
-        let label = UILabel()
-        label.backgroundColor = .systemGray6
-        label.text = fruitStore.printMango()
-        label.textAlignment = .center
-        return label
-    }()
-    
+    }
     private lazy var stockLabelStackView = {
         let stackView = UIStackView(arrangedSubviews: [strawberryStockLabel, bananaStockLabel, pineappleStockLabel, kiwiStockLabel, mangoStockLabel])
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -116,15 +63,19 @@ class ModifyOfStockViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        navigationItems()
     }
     
     private func navigationItems() {
-        
+        navigationItem.hidesBackButton = true
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "닫기", style: .plain, target: self, action: #selector(didTapNavigationRightButton))
+    }
+    
+    @objc private func didTapNavigationRightButton() {
+        navigationController?.popViewController(animated: true)
     }
     
     private func configureUI() {
-        navigationItem.hidesBackButton = true
-        
         view.backgroundColor = .systemBackground
         view.addSubview(titleLabel)
         view.addSubview(emojiStackView)

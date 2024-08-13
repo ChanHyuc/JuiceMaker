@@ -15,6 +15,7 @@ class MainViewController: UIViewController {
     
     private let modifyOfStockButton = {
         let button = UIButton(type: .system)
+        button.backgroundColor = .red
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("재고\n수정", for: .normal)
         button.titleLabel?.numberOfLines = 2
