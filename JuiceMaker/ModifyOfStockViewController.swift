@@ -14,6 +14,15 @@ class ModifyOfStockViewController: UIViewController {
         return label
     }()
     
+    private func navigationItems() {
+        navigationItem.hidesBackButton = true
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "닫기", style: .plain, target: self, action: #selector(didTapNavigationRightButton))
+    }
+    
+    @objc private func didTapNavigationRightButton() {
+        navigationController?.popViewController(animated: true)
+    }
+    
     private let strawberryEmoji = createFruitEmoji("🍓")
     private let bananaEmoji = createFruitEmoji("🍌")
     private let kiwiEmoji = createFruitEmoji("🥝")
@@ -32,7 +41,6 @@ class ModifyOfStockViewController: UIViewController {
         let stackView = UIStackView(arrangedSubviews: [strawberryEmoji, bananaEmoji, pineappleEmoji, kiwiEmoji, mangoEmoji])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.alignment = .fill
         stackView.distribution = .fillEqually
         return stackView
     }()
@@ -55,10 +63,29 @@ class ModifyOfStockViewController: UIViewController {
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
         stackView.spacing = 10
-        stackView.alignment = .fill
         stackView.distribution = .fillEqually
         return stackView
     }()
+    
+    private let strawberryStepper = createStepper()
+    private let bananaStepper = createStepper()
+    private let pineaplleStepper = createStepper()
+    private let kiwiStepper = createStepper()
+    private let mangoStepper = createStepper()
+    
+    private lazy var stepperStackView = {
+        let stackView = UIStackView(arrangedSubviews: [strawberryStepper, bananaStepper, pineaplleStepper, kiwiStepper, mangoStepper])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = 10
+        stackView.distribution = .fillEqually
+        return stackView
+    }()
+    
+    private static func createStepper() -> UIStepper {
+        let stepper = UIStepper()
+        return stepper
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,21 +93,13 @@ class ModifyOfStockViewController: UIViewController {
         navigationItems()
     }
     
-    private func navigationItems() {
-        navigationItem.hidesBackButton = true
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "닫기", style: .plain, target: self, action: #selector(didTapNavigationRightButton))
-    }
-    
-    @objc private func didTapNavigationRightButton() {
-        navigationController?.popViewController(animated: true)
-    }
-    
     private func configureUI() {
         view.backgroundColor = .systemBackground
         view.addSubview(titleLabel)
         view.addSubview(emojiStackView)
         view.addSubview(stockLabelStackView)
-        
+        view.addSubview(stepperStackView)
+
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.topAnchor),
             titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
@@ -88,12 +107,17 @@ class ModifyOfStockViewController: UIViewController {
             
             emojiStackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
             emojiStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            emojiStackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
+            emojiStackView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9),
             
             stockLabelStackView.topAnchor.constraint(equalTo: emojiStackView.bottomAnchor, constant: 20),
-            stockLabelStackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            stockLabelStackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
-            stockLabelStackView.heightAnchor.constraint(equalToConstant: 40)
+            stockLabelStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stockLabelStackView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9),
+            stockLabelStackView.heightAnchor.constraint(equalToConstant: 40),
+            
+            stepperStackView.topAnchor.constraint(equalTo: stockLabelStackView.bottomAnchor, constant: 20),
+            stepperStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            stepperStackView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9),
+            stepperStackView.heightAnchor.constraint(equalToConstant: 40),
         ])
     }
 

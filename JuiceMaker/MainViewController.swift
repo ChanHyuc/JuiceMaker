@@ -15,7 +15,6 @@ class MainViewController: UIViewController {
     
     private let modifyOfStockButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = .red
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("재고\n수정", for: .normal)
         button.titleLabel?.numberOfLines = 2
@@ -97,11 +96,11 @@ class MainViewController: UIViewController {
             
             emojiStackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
             emojiStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            emojiStackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
+            emojiStackView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9),
             
             stockLabelStackView.topAnchor.constraint(equalTo: emojiStackView.bottomAnchor, constant: 20),
             stockLabelStackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-            stockLabelStackView.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.9),
+            stockLabelStackView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9),
             stockLabelStackView.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
