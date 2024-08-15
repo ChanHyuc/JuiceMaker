@@ -67,24 +67,33 @@ class ModifyOfStockViewController: UIViewController {
         return stackView
     }()
     
-    private let strawberryStepper = createStepper()
-    private let bananaStepper = createStepper()
-    private let pineaplleStepper = createStepper()
-    private let kiwiStepper = createStepper()
-    private let mangoStepper = createStepper()
+    private lazy var strawberryStepper = createStepper(for: "strawberry")
+    private lazy var bananaStepper = createStepper(for: "banana")
+    private lazy var pineappleStepper = createStepper(for: "pineapple")
+    private lazy var kiwiStepper = createStepper(for: "kiwi")
+    private lazy var mangoStepper = createStepper(for: "mango")
     
     private lazy var stepperStackView = {
-        let stackView = UIStackView(arrangedSubviews: [strawberryStepper, bananaStepper, pineaplleStepper, kiwiStepper, mangoStepper])
+        let stackView = UIStackView(arrangedSubviews: [strawberryStepper, bananaStepper, pineappleStepper, kiwiStepper, mangoStepper])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.spacing = 10
         stackView.distribution = .fillEqually
         return stackView
     }()
     
-    private static func createStepper() -> UIStepper {
+    private func createStepper(for fruit: String) -> UIStepper {
         let stepper = UIStepper()
+        stepper.accessibilityIdentifier = fruit
+        stepper.addTarget(self, action: #selector(didTapStepper), for: .valueChanged)
         return stepper
+    }
+    
+    @objc private func didTapStepper(_ sender: UIStepper) {
+        let stepperNum = Int(sender.value)
+        
+        if let fruit = sender.accessibilityIdentifier {
+            print("\(fruit) stepper value: \(sender.value)")
+        }
     }
     
     override func viewDidLoad() {
@@ -102,7 +111,7 @@ class ModifyOfStockViewController: UIViewController {
 
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.topAnchor),
-            titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1),
+            titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor),
             titleLabel.heightAnchor.constraint(equalToConstant: 80),
             
             emojiStackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
@@ -117,7 +126,6 @@ class ModifyOfStockViewController: UIViewController {
             stepperStackView.topAnchor.constraint(equalTo: stockLabelStackView.bottomAnchor, constant: 20),
             stepperStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             stepperStackView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9),
-            stepperStackView.heightAnchor.constraint(equalToConstant: 40),
         ])
     }
 
