@@ -74,6 +74,29 @@ class MainViewController: UIViewController {
         return stackView
     }()
     
+    private let strawberryJuiceOrderButton = createJuiceOrderButton(text: "딸기쥬스\n주문")
+    private let bananaOrderButton = createJuiceOrderButton(text: "바나나쥬스\n주문")
+    private let pineappleJuiceOrderButton = createJuiceOrderButton(text: "파인애플\n쥬스 주문")
+    private let kiwiJuiceOrderButton = createJuiceOrderButton(text: "키위쥬스\n주문")
+    private let mangoJuiceOrderButton = createJuiceOrderButton(text: "망고쥬스\n주문")
+    
+    private static func createJuiceOrderButton(text: String) -> UIButton {
+        let button = UIButton(type: .system)
+        button.setTitle(text, for: .normal)
+        button.backgroundColor = .blue
+        button.tintColor = .systemBackground
+        return button
+    }
+    
+    private lazy var orderButtonStackView = {
+        let stackView = UIStackView(arrangedSubviews: [strawberryJuiceOrderButton, bananaOrderButton, pineappleJuiceOrderButton, kiwiJuiceOrderButton, mangoJuiceOrderButton])
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.spacing = 10
+        return stackView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -85,6 +108,7 @@ class MainViewController: UIViewController {
         view.addSubview(modifyOfStockButton)
         view.addSubview(emojiStackView)
         view.addSubview(stockLabelStackView)
+        view.addSubview(orderButtonStackView)
         
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.topAnchor),
@@ -101,7 +125,11 @@ class MainViewController: UIViewController {
             stockLabelStackView.topAnchor.constraint(equalTo: emojiStackView.bottomAnchor, constant: 20),
             stockLabelStackView.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
             stockLabelStackView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9),
-            stockLabelStackView.heightAnchor.constraint(equalToConstant: 40)
+            stockLabelStackView.heightAnchor.constraint(equalToConstant: 40),
+            
+            orderButtonStackView.topAnchor.constraint(equalTo: stockLabelStackView.bottomAnchor, constant: 20),
+            orderButtonStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            orderButtonStackView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9)
         ])
     }
 
