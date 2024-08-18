@@ -74,6 +74,9 @@ class MainViewController: UIViewController {
         return stackView
     }()
     
+    
+    private let strawberryBananaJuiceOrderButton = createJuiceOrderButton(text: "딸바쥬스 주문")
+    private let mangoKiwiJuiceJuiceOrderButton = createJuiceOrderButton(text: "망키쥬스 주문")
     private let strawberryJuiceOrderButton = createJuiceOrderButton(text: "딸기쥬스\n주문")
     private let bananaOrderButton = createJuiceOrderButton(text: "바나나쥬스\n주문")
     private let pineappleJuiceOrderButton = createJuiceOrderButton(text: "파인애플\n쥬스 주문")
@@ -89,11 +92,21 @@ class MainViewController: UIViewController {
     }
     
     private lazy var orderButtonStackView = {
-        let stackView = UIStackView(arrangedSubviews: [strawberryJuiceOrderButton, bananaOrderButton, pineappleJuiceOrderButton, kiwiJuiceOrderButton, mangoJuiceOrderButton])
+        let topStackView = UIStackView(arrangedSubviews: [strawberryBananaJuiceOrderButton, mangoKiwiJuiceJuiceOrderButton])
+        topStackView.axis = .horizontal
+        topStackView.distribution = .fillEqually
+        topStackView.spacing = 10
+        
+        let bottomStackView = UIStackView(arrangedSubviews: [strawberryJuiceOrderButton, bananaOrderButton, pineappleJuiceOrderButton, kiwiJuiceOrderButton, mangoJuiceOrderButton])
+        bottomStackView.axis = .horizontal
+        bottomStackView.distribution = .fillEqually
+        bottomStackView.spacing = 10
+        
+        let stackView = UIStackView(arrangedSubviews: [topStackView, bottomStackView])
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
+        stackView.axis = .vertical
         stackView.spacing = 10
+        
         return stackView
     }()
     
