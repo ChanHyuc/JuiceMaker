@@ -88,6 +88,8 @@ class MainViewController: UIViewController {
         button.setTitle(text, for: .normal)
         button.backgroundColor = .blue
         button.tintColor = .systemBackground
+        button.titleLabel?.numberOfLines = 2
+        button.titleLabel?.textAlignment = .center
         return button
     }
     
