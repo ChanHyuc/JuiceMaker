@@ -14,12 +14,25 @@ class ModifyOfStockViewController: UIViewController {
         return label
     }()
     
-    private func navigationItems() {
-        navigationItem.hidesBackButton = true
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "닫기", style: .plain, target: self, action: #selector(didTapNavigationRightButton))
-    }
+//    private func navigationItems() {
+//        navigationItem.hidesBackButton = true
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "닫기", style: .plain, target: self, action: #selector(didTapNavigationRightButton))
+//    }
     
-    @objc private func didTapNavigationRightButton() {
+//    @objc private func didTapNavigationRightButton() {
+//        navigationController?.popViewController(animated: true)
+//    }
+    
+    private let closeButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("닫기", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
+        button.addTarget(self, action: #selector(didTapCloseButton), for: .touchUpInside)
+        return button
+    }()
+    
+    @objc private func didTapCloseButton() {
         navigationController?.popViewController(animated: true)
     }
     
@@ -99,7 +112,8 @@ class ModifyOfStockViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
-        navigationItems()
+        navigationItem.hidesBackButton = true
+//        navigationItems()
     }
     
     private func configureUI() {
@@ -108,11 +122,15 @@ class ModifyOfStockViewController: UIViewController {
         view.addSubview(emojiStackView)
         view.addSubview(stockLabelStackView)
         view.addSubview(stepperStackView)
+        view.addSubview(closeButton)
 
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: view.topAnchor),
             titleLabel.widthAnchor.constraint(equalTo: view.widthAnchor),
             titleLabel.heightAnchor.constraint(equalToConstant: 80),
+            
+            closeButton.centerYAnchor.constraint(equalTo: titleLabel.centerYAnchor),
+            closeButton.trailingAnchor.constraint(equalTo: emojiStackView.trailingAnchor),
             
             emojiStackView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 20),
             emojiStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
