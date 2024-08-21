@@ -75,22 +75,30 @@ class MainViewController: UIViewController {
     }()
     
     
-    private let strawberryBananaJuiceOrderButton = createJuiceOrderButton(text: "딸바쥬스 주문")
-    private let mangoKiwiJuiceJuiceOrderButton = createJuiceOrderButton(text: "망키쥬스 주문")
-    private let strawberryJuiceOrderButton = createJuiceOrderButton(text: "딸기쥬스\n주문")
-    private let bananaOrderButton = createJuiceOrderButton(text: "바나나쥬스\n주문")
-    private let pineappleJuiceOrderButton = createJuiceOrderButton(text: "파인애플\n쥬스 주문")
-    private let kiwiJuiceOrderButton = createJuiceOrderButton(text: "키위쥬스\n주문")
-    private let mangoJuiceOrderButton = createJuiceOrderButton(text: "망고쥬스\n주문")
+    private lazy var strawberryBananaJuiceOrderButton = createJuiceOrderButton(fruitName: "딸바쥬스 주문")
+    private lazy var mangoKiwiJuiceJuiceOrderButton = createJuiceOrderButton(fruitName: "망키쥬스 주문")
+    private lazy var strawberryJuiceOrderButton = createJuiceOrderButton(fruitName: "딸기쥬스\n주문")
+    private lazy var bananaOrderButton = createJuiceOrderButton(fruitName: "바나나쥬스\n주문")
+    private lazy var pineappleJuiceOrderButton = createJuiceOrderButton(fruitName: "파인애플\n쥬스 주문")
+    private lazy var kiwiJuiceOrderButton = createJuiceOrderButton(fruitName: "키위쥬스\n주문")
+    private lazy var mangoJuiceOrderButton = createJuiceOrderButton(fruitName: "망고쥬스\n주문")
     
-    private static func createJuiceOrderButton(text: String) -> UIButton {
+    private func createJuiceOrderButton(fruitName: String) -> UIButton {
         let button = UIButton(type: .system)
-        button.setTitle(text, for: .normal)
+        button.setTitle(fruitName, for: .normal)
         button.backgroundColor = .blue
         button.tintColor = .systemBackground
         button.titleLabel?.numberOfLines = 2
         button.titleLabel?.textAlignment = .center
+        button.addTarget(self, action: #selector(didTapCreateJuiceOrderButton), for: .touchUpInside)
         return button
+    }
+    
+    @objc private func didTapCreateJuiceOrderButton() {
+        let alert = UIAlertController(title: "쥬스 나왔습니다! 맛있게 드세요!", message: "쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
+
+        alert.addAction(UIAlertAction(title: "확인", style: .destructive, handler: { _ in print("확인 클릭") }))
+        self.present(alert, animated: true)
     }
     
     private lazy var orderButtonStackView = {
