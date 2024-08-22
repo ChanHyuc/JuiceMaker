@@ -90,13 +90,15 @@ class MainViewController: UIViewController {
         button.tintColor = .systemBackground
         button.titleLabel?.numberOfLines = 2
         button.titleLabel?.textAlignment = .center
-        button.addTarget(self, action: #selector(didTapCreateJuiceOrderButton), for: .touchUpInside)
+        button.addAction(UIAction { [weak self] _ in
+            self?.didTapCreateJuiceOrderButton(fruitName: fruitName)
+        }, for: .touchUpInside)
+        
         return button
     }
     
-    @objc private func didTapCreateJuiceOrderButton() {
-        let alert = UIAlertController(title: "쥬스 나왔습니다! 맛있게 드세요!", message: "쥬스 나왔습니다! 맛있게 드세요!", preferredStyle: .alert)
-
+    private func didTapCreateJuiceOrderButton(fruitName: String) {
+        let alert = UIAlertController(title: "\(fruitName) 나왔습니다! 맛있게 드세요!", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "확인", style: .destructive, handler: { _ in print("확인 클릭") }))
         self.present(alert, animated: true)
     }
