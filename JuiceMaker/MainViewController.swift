@@ -98,7 +98,7 @@ class MainViewController: UIViewController {
     }
     
     private func didTapCreateJuiceOrderButton(fruitName: String) {
-        let alert = UIAlertController(title: "\(fruitName) 나왔습니다! 맛있게 드세요!", message: "", preferredStyle: .alert)
+        let alert = UIAlertController(title: "\(fruitName.replacingOccurrences(of: "\n", with: "")) 나왔습니다! 맛있게 드세요!", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "확인", style: .destructive, handler: { _ in print("확인 클릭") }))
         self.present(alert, animated: true)
     }
