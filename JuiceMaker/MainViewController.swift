@@ -50,11 +50,11 @@ class MainViewController: UIViewController {
         return stackView
     }()
     
-    private let strawberryStockLabel = createStockLabel(stock: fruitStore.printStrawberry())
-    private let bananaStockLabel = createStockLabel(stock: fruitStore.printBanana())
-    private let pineappleStockLabel = createStockLabel(stock: fruitStore.printPineapple())
-    private let kiwiStockLabel = createStockLabel(stock: fruitStore.printKiwi())
-    private let mangoStockLabel = createStockLabel(stock: fruitStore.printMango())
+    private let strawberryStockLabel = createStockLabel(stock: fruitStore.printFruit("strawberry"))
+    private let bananaStockLabel = createStockLabel(stock: fruitStore.printFruit("banana"))
+    private let pineappleStockLabel = createStockLabel(stock: fruitStore.printFruit("pineapple"))
+    private let kiwiStockLabel = createStockLabel(stock: fruitStore.printFruit("kiwi"))
+    private let mangoStockLabel = createStockLabel(stock: fruitStore.printFruit("mango"))
     
     private static func createStockLabel(stock: String) -> UILabel {
         let label = UILabel()
@@ -98,8 +98,10 @@ class MainViewController: UIViewController {
     }
     
     private func didTapCreateJuiceOrderButton(fruitName: String) {
-        let alert = UIAlertController(title: "\(fruitName.replacingOccurrences(of: "\n", with: "")) 나왔습니다! 맛있게 드세요!", message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "확인", style: .destructive, handler: { _ in print("확인 클릭") }))
+        let cleanedFruitName = fruitName.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: "주문", with: "").trimmingCharacters(in: .whitespaces)
+        
+        let alert = UIAlertController(title: "\(cleanedFruitName) 나왔습니다! 맛있게 드세요!", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "확인", style: .destructive, handler: { _  in }) )
         self.present(alert, animated: true)
     }
     

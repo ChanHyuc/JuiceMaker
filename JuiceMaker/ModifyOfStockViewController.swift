@@ -58,11 +58,11 @@ class ModifyOfStockViewController: UIViewController {
         return stackView
     }()
     
-    private let strawberryStockLabel = createStockLabel(stock: fruitStore.printStrawberry())
-    private let bananaStockLabel = createStockLabel(stock: fruitStore.printBanana())
-    private let pineappleStockLabel = createStockLabel(stock: fruitStore.printPineapple())
-    private let kiwiStockLabel = createStockLabel(stock: fruitStore.printKiwi())
-    private let mangoStockLabel = createStockLabel(stock: fruitStore.printMango())
+    private let strawberryStockLabel = createStockLabel(stock: fruitStore.printFruit("strawberry"))
+    private let bananaStockLabel = createStockLabel(stock: fruitStore.printFruit("banana"))
+    private let pineappleStockLabel = createStockLabel(stock: fruitStore.printFruit("pineapple"))
+    private let kiwiStockLabel = createStockLabel(stock: fruitStore.printFruit("kiwi"))
+    private let mangoStockLabel = createStockLabel(stock: fruitStore.printFruit("mango"))
     
     private static func createStockLabel(stock: String) -> UILabel {
         let label = UILabel()
