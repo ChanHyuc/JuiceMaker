@@ -2,6 +2,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     private static let fruitStore = FruitStore()
+    private var juice: Juice?
     
     private let titleLabel = {
         let label = UILabel()
@@ -74,24 +75,23 @@ class MainViewController: UIViewController {
         return stackView
     }()
     
+    private lazy var strawberryBananaJuiceOrderButton = createJuiceOrderButton(juiceName: "\(Juice.strawberryBananaJuice.rawValue) 주문")
+    private lazy var mangoKiwiJuiceJuiceOrderButton = createJuiceOrderButton(juiceName: "\(Juice.mangoKiwiJuice.rawValue) 주문")
+    private lazy var strawberryJuiceOrderButton = createJuiceOrderButton(juiceName: "\(Juice.strawberryJuice.rawValue) 주문")
+    private lazy var bananaOrderButton = createJuiceOrderButton(juiceName: "\(Juice.bananaJuice.rawValue) 주문")
+    private lazy var pineappleJuiceOrderButton = createJuiceOrderButton(juiceName: "\(Juice.pineappleJuice.rawValue) 주문")
+    private lazy var kiwiJuiceOrderButton = createJuiceOrderButton(juiceName: "\(Juice.kiwiJuice.rawValue) 주문")
+    private lazy var mangoJuiceOrderButton = createJuiceOrderButton(juiceName: "\(Juice.mangoJuice.rawValue) 주문")
     
-    private lazy var strawberryBananaJuiceOrderButton = createJuiceOrderButton(fruitName: "딸바쥬스 주문")
-    private lazy var mangoKiwiJuiceJuiceOrderButton = createJuiceOrderButton(fruitName: "망키쥬스 주문")
-    private lazy var strawberryJuiceOrderButton = createJuiceOrderButton(fruitName: "딸기쥬스\n주문")
-    private lazy var bananaOrderButton = createJuiceOrderButton(fruitName: "바나나쥬스\n주문")
-    private lazy var pineappleJuiceOrderButton = createJuiceOrderButton(fruitName: "파인애플\n쥬스 주문")
-    private lazy var kiwiJuiceOrderButton = createJuiceOrderButton(fruitName: "키위쥬스\n주문")
-    private lazy var mangoJuiceOrderButton = createJuiceOrderButton(fruitName: "망고쥬스\n주문")
-    
-    private func createJuiceOrderButton(fruitName: String) -> UIButton {
+    private func createJuiceOrderButton(juiceName: String) -> UIButton {
         let button = UIButton(type: .system)
-        button.setTitle(fruitName, for: .normal)
+        button.setTitle(juiceName, for: .normal)
         button.backgroundColor = .blue
         button.tintColor = .systemBackground
         button.titleLabel?.numberOfLines = 2
         button.titleLabel?.textAlignment = .center
         button.addAction(UIAction { [weak self] _ in
-            self?.didTapCreateJuiceOrderButton(fruitName: fruitName)
+            self?.didTapCreateJuiceOrderButton(fruitName: juiceName)
         }, for: .touchUpInside)
         
         return button
