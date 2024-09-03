@@ -100,9 +100,15 @@ class MainViewController: UIViewController {
     private func didTapCreateJuiceOrderButton(fruitName: String) {
         let cleanedFruitName = fruitName.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: "주문", with: "").trimmingCharacters(in: .whitespaces)
         
-        let alert = UIAlertController(title: "\(cleanedFruitName) 나왔습니다! 맛있게 드세요!", message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "확인", style: .destructive, handler: { _  in }) )
-        self.present(alert, animated: true)
+        let successAlert = UIAlertController(title: "\(cleanedFruitName) 나왔습니다! 맛있게 드세요!", message: "", preferredStyle: .alert)
+        successAlert.addAction(UIAlertAction(title: "확인", style: .default , handler: { _  in }) )
+        self.present(successAlert, animated: true)
+        
+        let failedAlert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: "", preferredStyle: .alert)
+        failedAlert.addAction(UIAlertAction(title: "확인", style: .default , handler: { _  in self.didTapmodifyOfStockButton() } ) )
+        failedAlert.addAction(UIAlertAction(title: "취소", style: .cancel , handler: { _  in }) )
+//        self.present(failedAlert, animated: true)
+        
     }
     
     private lazy var orderButtonStackView = {
