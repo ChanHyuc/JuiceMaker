@@ -18,24 +18,53 @@ class FruitStore {
         }
     }
             
-    func useFruit(for juice: Juice) {
+    func useFruit(for juice: String) throws {
         switch juice {
-        case .strawberryJuice:
+        case "딸기쥬스":
+            guard fruits.strawberry - 16 >= 0 else {
+                throw JuiceMakerError.outOfStock
+            }
             fruits.strawberry -= 16
-        case .bananaJuice:
+            
+        case "바나나쥬스":
+            guard fruits.banana - 2 >= 0 else {
+                throw JuiceMakerError.outOfStock
+            }
             fruits.banana -= 2
-        case .kiwiJuice:
+            
+        case "키위쥬스":
+            guard fruits.kiwi - 3 >= 0 else {
+                throw JuiceMakerError.outOfStock
+            }
             fruits.kiwi -= 3
-        case .pineappleJuice:
+            
+        case "파인애플쥬스":
+            guard fruits.pineapple - 2 >= 0 else {
+                throw JuiceMakerError.outOfStock
+            }
             fruits.pineapple -= 2
-        case .mangoJuice:
+            
+        case "망고쥬스":
+            guard fruits.mango - 3 >= 0 else {
+                throw JuiceMakerError.outOfStock
+            }
             fruits.mango -= 3
-        case .strawberryBananaJuice:
+            
+        case "딸바쥬스":
+            guard fruits.strawberry - 10 >= 0 && fruits.banana - 1 >= 0 else {
+                throw JuiceMakerError.outOfStock
+            }
             fruits.strawberry -= 10
             fruits.banana -= 1
-        case .mangoKiwiJuice:
+            
+        case "망키쥬스":
+            guard fruits.mango - 2 >= 0  && fruits.kiwi - 1 >= 0 else {
+                throw JuiceMakerError.outOfStock
+            }
             fruits.mango -= 2
             fruits.kiwi -= 1
+        
+        default: break
         }
     }
     

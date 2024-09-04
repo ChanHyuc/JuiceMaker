@@ -1,7 +1,7 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    private static let fruitStore = FruitStore()
+    private let fruitStore = FruitStore()
     private var juice: Juice?
     
     private let titleLabel = {
@@ -51,13 +51,13 @@ class MainViewController: UIViewController {
         return stackView
     }()
     
-    private let strawberryStockLabel = createStockLabel(stock: fruitStore.printFruit("strawberry"))
-    private let bananaStockLabel = createStockLabel(stock: fruitStore.printFruit("banana"))
-    private let pineappleStockLabel = createStockLabel(stock: fruitStore.printFruit("pineapple"))
-    private let kiwiStockLabel = createStockLabel(stock: fruitStore.printFruit("kiwi"))
-    private let mangoStockLabel = createStockLabel(stock: fruitStore.printFruit("mango"))
+    private lazy var strawberryStockLabel = createStockLabel(stock: fruitStore.printFruit("strawberry"))
+    private lazy var bananaStockLabel = createStockLabel(stock: fruitStore.printFruit("banana"))
+    private lazy var pineappleStockLabel = createStockLabel(stock: fruitStore.printFruit("pineapple"))
+    private lazy var kiwiStockLabel = createStockLabel(stock: fruitStore.printFruit("kiwi"))
+    private lazy var mangoStockLabel = createStockLabel(stock: fruitStore.printFruit("mango"))
     
-    private static func createStockLabel(stock: String) -> UILabel {
+    private func createStockLabel(stock: String) -> UILabel {
         let label = UILabel()
         label.backgroundColor = .systemGray6
         label.text = stock
@@ -100,14 +100,17 @@ class MainViewController: UIViewController {
     private func didTapCreateJuiceOrderButton(fruitName: String) {
         let cleanedFruitName = fruitName.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: "주문", with: "").trimmingCharacters(in: .whitespaces)
         
-        let successAlert = UIAlertController(title: "\(cleanedFruitName) 나왔습니다! 맛있게 드세요!", message: "", preferredStyle: .alert)
-        successAlert.addAction(UIAlertAction(title: "확인", style: .default , handler: { _  in }) )
-        self.present(successAlert, animated: true)
-        
-        let failedAlert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: "", preferredStyle: .alert)
-        failedAlert.addAction(UIAlertAction(title: "확인", style: .default , handler: { _  in self.didTapmodifyOfStockButton() } ) )
-        failedAlert.addAction(UIAlertAction(title: "취소", style: .cancel , handler: { _  in }) )
-//        self.present(failedAlert, animated: true)
+        do {
+            try fruitStore.useFruit(for: cleanedFruitName)
+            let successAlert = UIAlertController(title: "\(cleanedFruitName) 나왔습니다! 맛있게 드세요!", message: "", preferredStyle: .alert)
+            successAlert.addAction(UIAlertAction(title: "확인", style: .default , handler: { _  in }) )
+            self.present(successAlert, animated: true)
+        } catch {
+            let failedAlert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: "", preferredStyle: .alert)
+            failedAlert.addAction(UIAlertAction(title: "확인", style: .default , handler: { _  in self.didTapmodifyOfStockButton() } ) )
+            failedAlert.addAction(UIAlertAction(title: "취소", style: .cancel , handler: { _  in }) )
+            self.present(failedAlert, animated: true)
+        }
         
     }
     
