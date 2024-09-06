@@ -63,7 +63,6 @@ class FruitStore {
             }
             fruits.mango -= 2
             fruits.kiwi -= 1
-        
         default: break
         }
     }

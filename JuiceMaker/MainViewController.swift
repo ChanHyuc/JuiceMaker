@@ -97,11 +97,17 @@ class MainViewController: UIViewController {
         return button
     }
     
-    private func didTapCreateJuiceOrderButton(fruitName: String) {
+    @objc private func didTapCreateJuiceOrderButton(fruitName: String) {
         let cleanedFruitName = fruitName.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: "주문", with: "").trimmingCharacters(in: .whitespaces)
-        
         do {
             try fruitStore.useFruit(for: cleanedFruitName)
+            
+            strawberryStockLabel.text = fruitStore.printFruit("strawberry")
+            bananaStockLabel.text = fruitStore.printFruit("banana")
+            pineappleStockLabel.text = fruitStore.printFruit("pineapple")
+            kiwiStockLabel.text = fruitStore.printFruit("kiwi")
+            mangoStockLabel.text = fruitStore.printFruit("mango")
+            
             let successAlert = UIAlertController(title: "\(cleanedFruitName) 나왔습니다! 맛있게 드세요!", message: "", preferredStyle: .alert)
             successAlert.addAction(UIAlertAction(title: "확인", style: .default , handler: { _  in }) )
             self.present(successAlert, animated: true)
