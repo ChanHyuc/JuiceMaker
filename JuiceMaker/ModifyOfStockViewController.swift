@@ -1,8 +1,7 @@
 import UIKit
 
 class ModifyOfStockViewController: UIViewController {
-    
-    private static let fruitStore = FruitStore()
+    private let fruitStore = FruitStore()
     
     private let titleLabel = {
         let label = UILabel()
@@ -13,15 +12,6 @@ class ModifyOfStockViewController: UIViewController {
         label.text = "재고 추가"
         return label
     }()
-    
-//    private func navigationItems() {
-//        navigationItem.hidesBackButton = true
-//        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "닫기", style: .plain, target: self, action: #selector(didTapNavigationRightButton))
-//    }
-    
-//    @objc private func didTapNavigationRightButton() {
-//        navigationController?.popViewController(animated: true)
-//    }
     
     private let closeButton = {
         let button = UIButton(type: .system)
@@ -58,13 +48,13 @@ class ModifyOfStockViewController: UIViewController {
         return stackView
     }()
     
-    private let strawberryStockLabel = createStockLabel(stock: fruitStore.printFruit("strawberry"))
-    private let bananaStockLabel = createStockLabel(stock: fruitStore.printFruit("banana"))
-    private let pineappleStockLabel = createStockLabel(stock: fruitStore.printFruit("pineapple"))
-    private let kiwiStockLabel = createStockLabel(stock: fruitStore.printFruit("kiwi"))
-    private let mangoStockLabel = createStockLabel(stock: fruitStore.printFruit("mango"))
+    private lazy var strawberryStockLabel = createStockLabel(stock: fruitStore.printFruit("strawberry"))
+    private lazy var bananaStockLabel = createStockLabel(stock: fruitStore.printFruit("banana"))
+    private lazy var pineappleStockLabel = createStockLabel(stock: fruitStore.printFruit("pineapple"))
+    private lazy var kiwiStockLabel = createStockLabel(stock: fruitStore.printFruit("kiwi"))
+    private lazy var mangoStockLabel = createStockLabel(stock: fruitStore.printFruit("mango"))
     
-    private static func createStockLabel(stock: String) -> UILabel {
+    private func createStockLabel(stock: String) -> UILabel {
         let label = UILabel()
         label.backgroundColor = .systemGray6
         label.text = stock
@@ -113,7 +103,6 @@ class ModifyOfStockViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         navigationItem.hidesBackButton = true
-//        navigationItems()
     }
     
     private func configureUI() {

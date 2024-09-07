@@ -1,3 +1,7 @@
+protocol FruitDelegate: AnyObject {
+    func updateFruits(_ fruits: (strawberry: Int, banana: Int, pineapple: Int, kiwi: Int, mango: Int))
+}
+
 class FruitStore {
     private var fruits: (strawberry: Int, banana: Int, pineapple: Int, kiwi: Int, mango: Int) = (10, 11, 12, 13, 14)
     
