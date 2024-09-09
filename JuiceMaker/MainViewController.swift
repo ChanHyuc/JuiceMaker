@@ -51,11 +51,11 @@ class MainViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var strawberryStockLabel = createStockLabel(stock: fruitStore.printFruit("strawberry"))
-    private lazy var bananaStockLabel = createStockLabel(stock: fruitStore.printFruit("banana"))
-    private lazy var pineappleStockLabel = createStockLabel(stock: fruitStore.printFruit("pineapple"))
-    private lazy var kiwiStockLabel = createStockLabel(stock: fruitStore.printFruit("kiwi"))
-    private lazy var mangoStockLabel = createStockLabel(stock: fruitStore.printFruit("mango"))
+    private lazy var strawberryStockLabel = createStockLabel(stock: fruitStore.printFruit(.strawberry))
+    private lazy var bananaStockLabel = createStockLabel(stock: fruitStore.printFruit(.banana))
+    private lazy var pineappleStockLabel = createStockLabel(stock: fruitStore.printFruit(.pineapple))
+    private lazy var kiwiStockLabel = createStockLabel(stock: fruitStore.printFruit(.kiwi))
+    private lazy var mangoStockLabel = createStockLabel(stock: fruitStore.printFruit(.mango))
     
     private func createStockLabel(stock: String) -> UILabel {
         let label = UILabel()
@@ -100,13 +100,13 @@ class MainViewController: UIViewController {
     @objc private func didTapCreateJuiceOrderButton(fruitName: String) {
         let cleanedFruitName = fruitName.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: "주문", with: "").trimmingCharacters(in: .whitespaces)
         do {
-            try fruitStore.useFruit(for: cleanedFruitName)
+//            try fruitStore.useFruit(for: cleanedFruitName)
             
-            strawberryStockLabel.text = fruitStore.printFruit("strawberry")
-            bananaStockLabel.text = fruitStore.printFruit("banana")
-            pineappleStockLabel.text = fruitStore.printFruit("pineapple")
-            kiwiStockLabel.text = fruitStore.printFruit("kiwi")
-            mangoStockLabel.text = fruitStore.printFruit("mango")
+            strawberryStockLabel.text = fruitStore.printFruit(.strawberry)
+            bananaStockLabel.text = fruitStore.printFruit(.banana)
+            pineappleStockLabel.text = fruitStore.printFruit(.pineapple)
+            kiwiStockLabel.text = fruitStore.printFruit(.kiwi)
+            mangoStockLabel.text = fruitStore.printFruit(.mango)
             
             let successAlert = UIAlertController(title: "\(cleanedFruitName) 나왔습니다! 맛있게 드세요!", message: "", preferredStyle: .alert)
             successAlert.addAction(UIAlertAction(title: "확인", style: .default , handler: { _  in }) )

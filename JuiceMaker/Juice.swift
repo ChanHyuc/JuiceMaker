@@ -1,3 +1,11 @@
+enum Fruit: String {
+    case strawberry
+    case banana
+    case pineapple
+    case kiwi
+    case mango
+}
+
 enum Juice: String {
     case strawberryJuice = "딸기쥬스"
     case bananaJuice = "바나나쥬스"
