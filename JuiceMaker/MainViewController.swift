@@ -75,32 +75,31 @@ class MainViewController: UIViewController {
         return stackView
     }()
     
-    private lazy var strawberryBananaJuiceOrderButton = createJuiceOrderButton(juiceName: "\(Juice.strawberryBananaJuice.rawValue) 주문")
-    private lazy var mangoKiwiJuiceJuiceOrderButton = createJuiceOrderButton(juiceName: "\(Juice.mangoKiwiJuice.rawValue) 주문")
-    private lazy var strawberryJuiceOrderButton = createJuiceOrderButton(juiceName: "\(Juice.strawberryJuice.rawValue) 주문")
-    private lazy var bananaOrderButton = createJuiceOrderButton(juiceName: "\(Juice.bananaJuice.rawValue) 주문")
-    private lazy var pineappleJuiceOrderButton = createJuiceOrderButton(juiceName: "\(Juice.pineappleJuice.rawValue) 주문")
-    private lazy var kiwiJuiceOrderButton = createJuiceOrderButton(juiceName: "\(Juice.kiwiJuice.rawValue) 주문")
-    private lazy var mangoJuiceOrderButton = createJuiceOrderButton(juiceName: "\(Juice.mangoJuice.rawValue) 주문")
+    private lazy var strawberryBananaJuiceOrderButton = createJuiceOrderButton(buttonTitle: "\(Juice.strawberryBananaJuice.rawValue) 주문", juiceName: .strawberryBananaJuice)
+    private lazy var mangoKiwiJuiceJuiceOrderButton = createJuiceOrderButton(buttonTitle: "\(Juice.mangoKiwiJuice.rawValue) 주문", juiceName: .mangoKiwiJuice)
+    private lazy var strawberryJuiceOrderButton = createJuiceOrderButton(buttonTitle: "\(Juice.strawberryJuice.rawValue) 주문", juiceName: .strawberryJuice)
+    private lazy var bananaOrderButton = createJuiceOrderButton(buttonTitle: "\(Juice.bananaJuice.rawValue) 주문", juiceName: .bananaJuice)
+    private lazy var pineappleJuiceOrderButton = createJuiceOrderButton(buttonTitle: "\(Juice.pineappleJuice.rawValue) 주문", juiceName: .pineappleJuice)
+    private lazy var kiwiJuiceOrderButton = createJuiceOrderButton(buttonTitle: "\(Juice.kiwiJuice.rawValue) 주문", juiceName: .kiwiJuice)
+    private lazy var mangoJuiceOrderButton = createJuiceOrderButton(buttonTitle: "\(Juice.mangoJuice.rawValue) 주문", juiceName: .mangoJuice)
     
-    private func createJuiceOrderButton(juiceName: String) -> UIButton {
+    private func createJuiceOrderButton(buttonTitle: String, juiceName: Juice) -> UIButton {
         let button = UIButton(type: .system)
-        button.setTitle(juiceName, for: .normal)
+        button.setTitle(buttonTitle, for: .normal)
         button.backgroundColor = .blue
         button.tintColor = .systemBackground
         button.titleLabel?.numberOfLines = 2
         button.titleLabel?.textAlignment = .center
         button.addAction(UIAction { [weak self] _ in
-            self?.didTapCreateJuiceOrderButton(fruitName: juiceName)
+            self?.didTapCreateJuiceOrderButton(juiceName: juiceName)
         }, for: .touchUpInside)
         
         return button
     }
     
-    @objc private func didTapCreateJuiceOrderButton(fruitName: String) {
-        let cleanedFruitName = fruitName.replacingOccurrences(of: "\n", with: "").replacingOccurrences(of: "주문", with: "").trimmingCharacters(in: .whitespaces)
+    private func didTapCreateJuiceOrderButton(juiceName: Juice) {
         do {
-//            try fruitStore.useFruit(for: cleanedFruitName)
+            try fruitStore.useFruit(for: juiceName)
             
             strawberryStockLabel.text = fruitStore.printFruit(.strawberry)
             bananaStockLabel.text = fruitStore.printFruit(.banana)
@@ -108,7 +107,7 @@ class MainViewController: UIViewController {
             kiwiStockLabel.text = fruitStore.printFruit(.kiwi)
             mangoStockLabel.text = fruitStore.printFruit(.mango)
             
-            let successAlert = UIAlertController(title: "\(cleanedFruitName) 나왔습니다! 맛있게 드세요!", message: "", preferredStyle: .alert)
+            let successAlert = UIAlertController(title: "\(juiceName.rawValue) 나왔습니다! 맛있게 드세요!", message: "", preferredStyle: .alert)
             successAlert.addAction(UIAlertAction(title: "확인", style: .default , handler: { _  in }) )
             self.present(successAlert, animated: true)
         } catch {
