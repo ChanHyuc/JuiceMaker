@@ -61,6 +61,7 @@ class ModifyOfStockViewController: UIViewController {
         label.textAlignment = .center
         return label
     }
+    
     private lazy var stockLabelStackView = {
         let stackView = UIStackView(arrangedSubviews: [strawberryStockLabel, bananaStockLabel, pineappleStockLabel, kiwiStockLabel, mangoStockLabel])
         stackView.translatesAutoresizingMaskIntoConstraints = false

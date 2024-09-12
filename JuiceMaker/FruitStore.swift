@@ -2,21 +2,10 @@ class FruitStore {
     private var fruitStock: [Fruit: Int] = [.strawberry: 20, .banana: 21, .pineapple: 22, .kiwi: 23, .mango: 24]
     
     func printFruit(_ fruit: Fruit) -> String {
-        if let stock = fruitStock[fruit] {
-            switch fruit {
-            case .strawberry :
-                return String(stock)
-            case .banana:
-                return String(stock)
-            case .pineapple:
-                return String(stock)
-            case .kiwi:
-                return String(stock)
-            case .mango:
-                return String(stock)
-            }
+        guard let stock = fruitStock[fruit] else {
+            return "N/A"
         }
-        return ""
+        return String(stock)
     }
             
     func useFruit(for juice: Juice) throws {
