@@ -7,6 +7,21 @@ class FruitStore {
         }
         return String(stock)
     }
+    
+    func plusOfStock(_ fruit: Fruit.RawValue ) {
+        guard let currentStock = Fruit(rawValue: fruit), let modifyStock = fruitStock[currentStock] else {
+            return
+        }
+//        fruitStock[Fruit(rawValue: fruit) ?? .banana]! += 1
+        fruitStock[currentStock] = modifyStock + 1
+    }
+        
+    func minusOfStock(_ fruit: Fruit.RawValue ) {
+        guard let currentStock = Fruit(rawValue: fruit), let modifyStock = fruitStock[currentStock] else {
+            return
+        }
+        fruitStock[currentStock] = modifyStock - 1
+    }
             
     func useFruit(for juice: Juice) throws {
         switch juice {

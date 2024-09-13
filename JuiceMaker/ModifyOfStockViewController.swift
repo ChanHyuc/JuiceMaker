@@ -88,16 +88,24 @@ class ModifyOfStockViewController: UIViewController {
     private func createStepper(for fruit: String) -> UIStepper {
         let stepper = UIStepper()
         stepper.accessibilityIdentifier = fruit
+        stepper.minimumValue = -1
         stepper.addTarget(self, action: #selector(didTapStepper), for: .valueChanged)
         return stepper
     }
     
     @objc private func didTapStepper(_ sender: UIStepper) {
-        let stepperNum = Int(sender.value)
+        print(sender.value)
+        guard let fruit = sender.accessibilityIdentifier else { return }
+        let stepperValue = sender.value
         
-        if let fruit = sender.accessibilityIdentifier {
-            print("\(fruit) stepper value: \(sender.value)")
-        }
+        stepperValue > 0 ? fruitStore.plusOfStock(fruit) : fruitStore.minusOfStock(fruit)
+        sender.value = 0
+        
+        strawberryStockLabel.text = fruitStore.printFruit(.strawberry)
+        bananaStockLabel.text = fruitStore.printFruit(.banana)
+        pineappleStockLabel.text = fruitStore.printFruit(.pineapple)
+        kiwiStockLabel.text = fruitStore.printFruit(.kiwi)
+        mangoStockLabel.text = fruitStore.printFruit(.mango)
     }
     
     override func viewDidLoad() {
