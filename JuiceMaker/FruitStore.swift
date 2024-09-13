@@ -12,7 +12,6 @@ class FruitStore {
         guard let currentStock = Fruit(rawValue: fruit), let modifyStock = fruitStock[currentStock] else {
             return
         }
-//        fruitStock[Fruit(rawValue: fruit) ?? .banana]! += 1
         fruitStock[currentStock] = modifyStock + 1
     }
         
@@ -47,7 +46,7 @@ class FruitStore {
             guard let currentStock = fruitStock[.strawberry], currentStock - 3 >= 0 else {
                 throw JuiceMakerError.outOfStock
             }
-            fruitStock[.strawberry] = currentStock - 3
+            fruitStock[.pineapple] = currentStock - 3
             
         case .mangoJuice:
             guard let currentStock = fruitStock[.strawberry], currentStock - 5 >= 0 else {
