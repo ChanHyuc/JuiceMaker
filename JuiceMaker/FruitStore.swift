@@ -1,4 +1,6 @@
 class FruitStore {
+    static let shared = FruitStore()
+    
     private var fruitStock: [Fruit: Int] = [.strawberry: 20, .banana: 21, .pineapple: 22, .kiwi: 23, .mango: 24]
     
     func printFruit(_ fruit: Fruit) -> String {
@@ -69,8 +71,8 @@ class FruitStore {
                   mangoStock - 5 >= 0, kiwiStock - 5 >= 0  else {
                 throw JuiceMakerError.outOfStock
             }
-            fruitStock[.strawberry] = mangoStock - 5
-            fruitStock[.banana] = kiwiStock - 5
+            fruitStock[.mango] = mangoStock - 5
+            fruitStock[.kiwi] = kiwiStock - 5
         }
     }
     

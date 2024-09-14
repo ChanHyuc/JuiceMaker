@@ -1,7 +1,7 @@
 import UIKit
 
 class ModifyOfStockViewController: UIViewController {
-    private let fruitStore = FruitStore()
+    private let fruitStore = FruitStore.shared
     
     private let titleLabel = {
         let label = UILabel()
@@ -94,7 +94,6 @@ class ModifyOfStockViewController: UIViewController {
     }
     
     @objc private func didTapStepper(_ sender: UIStepper) {
-        print(sender.value)
         guard let fruit = sender.accessibilityIdentifier else { return }
         let stepperValue = sender.value
         
@@ -110,8 +109,8 @@ class ModifyOfStockViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
         navigationItem.hidesBackButton = true
+        configureUI()
     }
     
     private func configureUI() {

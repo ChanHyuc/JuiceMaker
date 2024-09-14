@@ -1,7 +1,7 @@
 import UIKit
 
 class MainViewController: UIViewController {
-    private let fruitStore = FruitStore()
+    private let fruitStore = FruitStore.shared
     private var juice: Juice?
     
     private let titleLabel = {
@@ -142,6 +142,15 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
         configureUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        strawberryStockLabel.text = fruitStore.printFruit(.strawberry)
+        bananaStockLabel.text = fruitStore.printFruit(.banana)
+        pineappleStockLabel.text = fruitStore.printFruit(.pineapple)
+        kiwiStockLabel.text = fruitStore.printFruit(.kiwi)
+        mangoStockLabel.text = fruitStore.printFruit(.mango)
     }
     
     private func configureUI() {
