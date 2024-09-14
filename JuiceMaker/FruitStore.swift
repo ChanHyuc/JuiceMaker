@@ -1,7 +1,7 @@
 class FruitStore {
     static let shared = FruitStore()
     
-    private var fruitStock: [Fruit: Int] = [.strawberry: 20, .banana: 21, .pineapple: 22, .kiwi: 23, .mango: 24]
+    private var fruitStock: [Fruit: Int] = [.strawberry: 10, .banana: 10, .pineapple: 10, .kiwi: 10, .mango: 10]
     
     func printFruit(_ fruit: Fruit) -> String {
         guard let stock = fruitStock[fruit] else {
@@ -45,13 +45,13 @@ class FruitStore {
             fruitStock[.kiwi] = currentStock - 4
             
         case .pineappleJuice:
-            guard let currentStock = fruitStock[.strawberry], currentStock - 3 >= 0 else {
+            guard let currentStock = fruitStock[.pineapple], currentStock - 3 >= 0 else {
                 throw JuiceMakerError.outOfStock
             }
             fruitStock[.pineapple] = currentStock - 3
             
         case .mangoJuice:
-            guard let currentStock = fruitStock[.strawberry], currentStock - 5 >= 0 else {
+            guard let currentStock = fruitStock[.mango], currentStock - 5 >= 0 else {
                 throw JuiceMakerError.outOfStock
             }
             fruitStock[.mango] = currentStock - 5

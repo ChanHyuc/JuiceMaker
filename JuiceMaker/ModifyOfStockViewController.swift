@@ -81,7 +81,7 @@ class ModifyOfStockViewController: UIViewController {
         let stackView = UIStackView(arrangedSubviews: [strawberryStepper, bananaStepper, pineappleStepper, kiwiStepper, mangoStepper])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
-        stackView.distribution = .fillEqually
+        stackView.distribution = .equalCentering
         return stackView
     }()
     
@@ -140,7 +140,7 @@ class ModifyOfStockViewController: UIViewController {
             
             stepperStackView.topAnchor.constraint(equalTo: stockLabelStackView.bottomAnchor, constant: 20),
             stepperStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            stepperStackView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9),
+            stepperStackView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.86),
         ])
     }
 
