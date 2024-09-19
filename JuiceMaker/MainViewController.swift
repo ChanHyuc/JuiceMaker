@@ -141,6 +141,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+//        navigationController?.setNavigationBarHidden(true, animated: true)
         configureUI()
     }
     
@@ -179,9 +180,8 @@ class MainViewController: UIViewController {
             
             orderButtonStackView.topAnchor.constraint(equalTo: stockLabelStackView.bottomAnchor, constant: 20),
             orderButtonStackView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            orderButtonStackView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9)
+            orderButtonStackView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9),
         ])
     }
 
 }
-
