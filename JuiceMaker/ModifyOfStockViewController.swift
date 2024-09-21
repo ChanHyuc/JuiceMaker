@@ -97,7 +97,7 @@ class ModifyOfStockViewController: UIViewController {
         guard let fruit = sender.accessibilityIdentifier else { return }
         let stepperValue = sender.value
         
-        stepperValue > 0 ? fruitStore.plusOfStock(fruit) : fruitStore.minusOfStock(fruit)
+        stepperValue > 0 ? fruitStore.addStock(fruit) : fruitStore.subtractStock(fruit)
         sender.value = 0
         
         strawberryStockLabel.text = fruitStore.printFruit(.strawberry)

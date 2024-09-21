@@ -10,20 +10,20 @@ class FruitStore {
         return String(stock)
     }
     
-    func plusOfStock(_ fruit: Fruit.RawValue ) {
+    func addStock(_ fruit: Fruit.RawValue) {
         guard let currentStock = Fruit(rawValue: fruit), let modifyStock = fruitStock[currentStock] else {
             return
         }
         fruitStock[currentStock] = modifyStock + 1
     }
         
-    func minusOfStock(_ fruit: Fruit.RawValue ) {
+    func subtractStock(_ fruit: Fruit.RawValue) {
         guard let currentStock = Fruit(rawValue: fruit), let modifyStock = fruitStock[currentStock] else {
             return
         }
         fruitStock[currentStock] = modifyStock - 1
     }
-            
+    
     func useFruit(for juice: Juice) throws {
         switch juice {
         case .strawberryJuice:
@@ -75,5 +75,4 @@ class FruitStore {
             fruitStock[.kiwi] = kiwiStock - 5
         }
     }
-    
 }
