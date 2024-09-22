@@ -2,6 +2,7 @@ import UIKit
 
 class MainViewController: UIViewController {
     private let fruitStore = FruitStore.shared
+    private let juiceMaker = JuiceMaker()
     private var juice: Juice?
     
     private let titleLabel = {
@@ -99,7 +100,7 @@ class MainViewController: UIViewController {
     
     private func didTapCreateJuiceOrderButton(juiceName: Juice) {
         do {
-            try fruitStore.useFruit(for: juiceName)
+            try fruitStore.makeJuice(for: juiceName)
             
             strawberryStockLabel.text = fruitStore.printFruit(.strawberry)
             bananaStockLabel.text = fruitStore.printFruit(.banana)
