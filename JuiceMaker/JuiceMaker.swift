@@ -1,18 +1,9 @@
 struct JuiceMaker {
     private let fruitStore = FruitStore()
-    
-    enum Juice: String {
-        case strawberryJuice = "딸기쥬스"
-        case bananaJuice = "바나나쥬스"
-        case kiwiJuice = "키위쥬스"
-        case pineappleJuice = "파인애플쥬스"
-        case mangoJuice = "망고쥬스"
-        case strawberryBananaJuice = "딸바쥬스"
-        case mangoKiwiJuice = "망키쥬스"
-    }
+    private var juice: Juice?
     
     var recipe: [Fruit: Int] {
-        switch Juice {
+        switch juice {
         case .strawberryJuice:
             return [.strawberry: 6]
         case .bananaJuice:
@@ -27,10 +18,33 @@ struct JuiceMaker {
             return [.strawberry: 5, .banana: 5]
         case .mangoKiwiJuice:
             return [.mango: 5, .kiwi: 5]
+        case .none:
+            return [:]
         }
     }
     
-//    func makeJuice(for juice: Juice) -> Result<Juice, Error> {
-//        try fruitStore.checkFruitStock(fruit: juice, amount: <#T##Int#>)
-//    }
+    func checkFruitStock(fruit: Fruit, amount: Int) throws {
+        guard let currentStock = fruitStock[fruit], currentStock >= amount else {
+            throw JuiceMakerError.outOfStock
+        }
+    }
+    
+    
+    private func useFruit(for juice: Juice) throws {
+        for (fruit, amount) in juice.recipe {
+            try fruitStore.substractFruit(fruit: fruit, amount: amount)
+        }
+    }
+    
+    mutating func makeJuice(for selectedJuice: Juice) -> Result<Juice, Error> {
+        do {
+            for (fruit, amount) in recipe {
+                try fruitStore.checkFruitStock(fruit: fruit, amount: amount)
+                fruitStore.updateFruitStock(fruit: fruit, amount: amount)
+            }
+            return .success(selectedJuice)
+        } catch {
+            return .failure(error)
+        }
+    }
 }

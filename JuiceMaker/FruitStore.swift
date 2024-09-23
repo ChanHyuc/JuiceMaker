@@ -23,12 +23,6 @@ class FruitStore {
         }
         fruitStock[currentStock] = modifyStock - 1
     }
-
-    func checkFruitStock(fruit: Fruit, amount: Int) throws {
-        guard let currentStock = fruitStock[fruit], currentStock >= amount else {
-            throw JuiceMakerError.outOfStock
-        }
-    }
     
     func updateFruitStock(fruit: Fruit, amount: Int) {
         if let currentStock = fruitStock[fruit] {
