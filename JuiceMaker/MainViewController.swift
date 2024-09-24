@@ -99,9 +99,10 @@ class MainViewController: UIViewController {
     }
     
     private func didTapCreateJuiceOrderButton(juiceName: Juice) {
-        do {
-            juiceMaker.makeJuice(for: juiceName)
-            
+        let result = juiceMaker.makeJuice(for: juiceName)
+        
+        switch result {
+        case .success:
             strawberryStockLabel.text = fruitStore.printFruit(.strawberry)
             bananaStockLabel.text = fruitStore.printFruit(.banana)
             pineappleStockLabel.text = fruitStore.printFruit(.pineapple)
@@ -109,14 +110,34 @@ class MainViewController: UIViewController {
             mangoStockLabel.text = fruitStore.printFruit(.mango)
             
             let successAlert = UIAlertController(title: "\(juiceName.rawValue) 나왔습니다! 맛있게 드세요!", message: "", preferredStyle: .alert)
-            successAlert.addAction(UIAlertAction(title: "확인", style: .default , handler: { _  in }) )
+            successAlert.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in }))
             self.present(successAlert, animated: true)
-        } catch {
+            
+        case .failure:
             let failedAlert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: "", preferredStyle: .alert)
-            failedAlert.addAction(UIAlertAction(title: "확인", style: .default , handler: { _  in self.didTapmodifyOfStockButton() } ) )
-            failedAlert.addAction(UIAlertAction(title: "취소", style: .cancel , handler: { _  in }) )
+            failedAlert.addAction(UIAlertAction(title: "확인", style: .default, handler: { _ in self.didTapmodifyOfStockButton() }))
+            failedAlert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: { _ in }))
             self.present(failedAlert, animated: true)
         }
+        
+        
+//        do {
+//            juiceMaker.makeJuice(for: juiceName)
+//            strawberryStockLabel.text = fruitStore.printFruit(.strawberry)
+//            bananaStockLabel.text = fruitStore.printFruit(.banana)
+//            pineappleStockLabel.text = fruitStore.printFruit(.pineapple)
+//            kiwiStockLabel.text = fruitStore.printFruit(.kiwi)
+//            mangoStockLabel.text = fruitStore.printFruit(.mango)
+//            
+//            let successAlert = UIAlertController(title: "\(juiceName.rawValue) 나왔습니다! 맛있게 드세요!", message: "", preferredStyle: .alert)
+//            successAlert.addAction(UIAlertAction(title: "확인", style: .default , handler: { _  in }) )
+//            self.present(successAlert, animated: true)
+//        } catch {
+//            let failedAlert = UIAlertController(title: "재료가 모자라요. 재고를 수정할까요?", message: "", preferredStyle: .alert)
+//            failedAlert.addAction(UIAlertAction(title: "확인", style: .default , handler: { _  in self.didTapmodifyOfStockButton() } ) )
+//            failedAlert.addAction(UIAlertAction(title: "취소", style: .cancel , handler: { _  in }) )
+//            self.present(failedAlert, animated: true)
+//        }
         
     }
     
