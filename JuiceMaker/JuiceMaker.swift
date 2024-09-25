@@ -1,5 +1,5 @@
 struct JuiceMaker {
-    private let fruitStore = FruitStore()
+    private let fruitStore = FruitStore.shared
     private var juice: Juice?
     
     var recipe: [Fruit: Int] {
@@ -21,15 +21,13 @@ struct JuiceMaker {
         case .none:
             return [:]
         }
-        
     }
 
     mutating func makeJuice(for selectedJuice: Juice) -> Result<Juice, Error>{
         self.juice = selectedJuice
-        
         do {
             for (fruit, amount) in recipe {
-                try fruitStore.isFruitAvailable(fruit, amount)
+                try fruitStore.validateFruitStock(fruit, amount)
                 fruitStore.updateFruitStock(fruit: fruit, amount: amount)
             }
             return .success(selectedJuice)

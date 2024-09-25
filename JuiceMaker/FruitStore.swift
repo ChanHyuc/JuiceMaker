@@ -10,7 +10,7 @@ class FruitStore {
         return String(stock)
     }
     
-    func isFruitAvailable(_ fruit: Fruit, _ amount: Int) throws {
+    func validateFruitStock(_ fruit: Fruit, _ amount: Int) throws {
         guard let stock = fruitStock[fruit],  stock - amount >= 0 else {
             throw JuiceMakerError.outOfStock
         }
